@@ -8,10 +8,9 @@ export default function useStorageState<T extends object>(
   initialData: T | null | undefined,
 ) {
   const [data, setData] = useState<T | null | undefined>(initialData);
-  const storage = window?.localStorage;
 
   function getStorageData(): T | null {
-    const data = storage.getItem(key) as string | null;
+    const data = window.localStorage.getItem(key) as string | null;
     if (_.isEmpty(data) || data == null) {
       return null;
     }
@@ -25,7 +24,7 @@ export default function useStorageState<T extends object>(
   }
 
   function setStorageData(item: T) {
-    storage.setItem(key, JSON.stringify(item));
+    window.localStorage.setItem(key, JSON.stringify(item));
   }
 
   useEffect(() => {
