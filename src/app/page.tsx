@@ -26,6 +26,8 @@ function formatNumberWithDots(num: number) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+const availabeInputKeys = Object.freeze(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Delete", "Backspace", "Enter"])
+
 export default function ScorePage() {
   const [currentValue, setCurrentValue] = useState<number>(0);
   const [scoreData, setScoreData] = useStorageState<ScoreFullData>(
@@ -82,8 +84,15 @@ export default function ScorePage() {
         <Stack direction="row">
           <NumberInput
             value={currentValue}
+            inputMode="numeric"
+            onKeyDown={(e) => {
+              if (!availabeInputKeys.includes(e.key)) {
+                e.preventDefault();
+                console.log("block keyDown", e.key);
+              }
+            }}
             onChange={(_1, numValue) => {
-              setCurrentValue(numValue);
+              setCurrentValue(numValue || 0);
             }}
           >
             <NumberInputField placeholder="새로운 숫자를 입력해주세요." />
