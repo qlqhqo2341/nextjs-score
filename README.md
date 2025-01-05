@@ -1,3 +1,12 @@
+# nextjs-score
+
+모바일/pc에서 모두 사용 가능한 개인 스코어 누산기 
+
+https://score.jhan.me/
+
+
+# next.js README.md
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
